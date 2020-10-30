@@ -9,10 +9,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install:
 
-* Java OpenJDK 1.11: https://openjdk.java.net/install/
-* Maven 3.3.6: https://maven.apache.org/download.cgi
-* NodeJS V14.4.4 https://nodejs.org/en/download/
-* npm 6.14.4 https://www.npmjs.com/get-npm
+* [Java OpenJDK 1.11](https://openjdk.java.net/install/)
+* [Maven 3.3.6](https://maven.apache.org/download.cgi)
+* [NodeJS V14.4.4](https://nodejs.org/en/download/)
+* [NVM](https://github.com/nvm-sh/nvm) (optional, but recommended)
 
 ## Installing
 
@@ -28,15 +28,14 @@ mvn clean package
 
 To start-up the mock Rest APIs, just follow
 
-```
+```sh
 cd mock-rest-api
-npm install -s
-npm instlal -g json-server
-chmod a+x multiple_stack.sh
-./multiple_stack.sh
+nvm use ## if you are using nvm
+npm i ## yarn i
+npm start 3000 3010
 ```
 
-This commands will install the project dependencies and start 11 nodeJs processes exposing a rest endpoint at http://localhost:{port}/employees
+This commands will install the project dependencies and start 11 nodeJs processes exposing a rest endpoint at http://localhost:{port}/
 The {port} list will start from 3000 to 3010
 
 ### Running the application
