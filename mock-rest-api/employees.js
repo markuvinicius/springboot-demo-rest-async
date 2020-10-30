@@ -1,11 +1,13 @@
 // employees.js
-var faker = require('faker')
-function generateEmployees () {
-  var employees = []
-  for (var id = 0; id < 50; id++) {
-    var firstName = faker.name.firstName()
-    var lastName = faker.name.lastName()
-    var email = faker.internet.email()
+const faker = require('faker')
+
+const generateEmployees = () => {
+  let employees = []
+  
+  for (let id = 0; id < 50; id++) {
+    const firstName = faker.name.firstName()
+    const lastName = faker.name.lastName()
+    const email = faker.internet.email()
     employees.push({
       "id": id,
       "first_name": firstName,
@@ -13,6 +15,8 @@ function generateEmployees () {
       "email": email
     })
   }
+  
   return { "employees": employees }
 }
+
 module.exports = generateEmployees
