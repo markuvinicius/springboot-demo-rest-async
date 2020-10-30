@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+mock-rest-api/node-modules
+mock-rest-api/logs
+
+
