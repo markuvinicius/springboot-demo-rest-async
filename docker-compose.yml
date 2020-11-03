@@ -1,0 +1,23 @@
+version: '3'
+
+networks:
+    mom:
+      driver: bridge
+
+services:
+    artemis:
+        image: vromero/activemq-artemis:2.15.0-alpine
+        container_name: artemis-broker
+        ports: 
+            - "8161:8161"
+            - "61616:61616"
+            - "1198:1198"
+            - "1199:1199"
+        environment:
+            - ENABLE_JMX=true
+            - JMX_PORT=1199
+            - JMX_RMI_PORT=1198
+            - ARTEMIS_USERNAME=application
+            - ARTEMIS_PASSWORD=appPassword
+        networks:
+            - mom

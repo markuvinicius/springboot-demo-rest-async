@@ -4,13 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Employee implements Serializable {
-
-    private int id;
-    private String first_name;
-    private String last_name;
-    private String email;
+public class Employees implements Serializable {
+    private List<Employee> employees;
 }

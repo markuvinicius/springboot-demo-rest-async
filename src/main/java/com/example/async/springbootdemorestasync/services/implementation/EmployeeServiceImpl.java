@@ -1,7 +1,8 @@
 package com.example.async.springbootdemorestasync.services.implementation;
 
 import com.example.async.springbootdemorestasync.models.Employee;
-import com.example.async.springbootdemorestasync.services.EmployeesService;
+import com.example.async.springbootdemorestasync.models.Employees;
+import com.example.async.springbootdemorestasync.services.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +18,7 @@ import java.util.concurrent.CompletableFuture;
 
 @Service
 @Slf4j
-public class EmployeeServiceImpl implements EmployeesService {
+public class EmployeeServiceImpl implements EmployeeService {
 
     private RestTemplate restTemplate;
 
@@ -30,19 +31,20 @@ public class EmployeeServiceImpl implements EmployeesService {
     }
 
     @Override
-    public List<Employee> getEmployees(String port) throws IOException {
+    public Employees getEmployees(String port) throws IOException {
         String resourceURL = this.parameterURL.replaceAll("port",port);
         log.info("Calling Employees Service at port: " + port);
-        ResponseEntity<List<Employee>> response = this.restTemplate.exchange(resourceURL, HttpMethod.GET,null,new ParameterizedTypeReference<List<Employee>>(){});
+
+        ResponseEntity<Employees> response = this.restTemplate.exchange(resourceURL, HttpMethod.GET,null, Employees.class);
         return response.getBody();
     }
 
     @Override
-    public CompletableFuture<List<Employee>> getAsyncEmployees(String port){
+    public CompletableFuture<Employees> getAsyncEmployees(String port){
         return CompletableFuture.supplyAsync( () -> {
                     String resourceURL = this.parameterURL.replaceAll("port",port);
                     log.info("Calling Employees Service at port: " + port);
-                    ResponseEntity<List<Employee>> response = this.restTemplate.exchange(resourceURL, HttpMethod.GET,null,new ParameterizedTypeReference<List<Employee>>(){});
+                    ResponseEntity<Employees> response = this.restTemplate.exchange(resourceURL, HttpMethod.GET,null, Employees.class);
                     return response.getBody();
                 });
     }

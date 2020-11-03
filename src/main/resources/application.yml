@@ -1,0 +1,18 @@
+
+server:
+  tomcat:
+    max-threads: 300
+
+integration:
+  connection-timeout: 1000
+
+app:
+  resource:
+    employee:
+        url: http://localhost:port/employees
+
+artemis:
+    broker-url: tcp://localhost:61616
+    username: application
+    password: appPassword
+    queue-name: employees
